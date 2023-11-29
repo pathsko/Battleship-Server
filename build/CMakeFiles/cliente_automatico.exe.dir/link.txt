@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 CMakeFiles/cliente_automatico.exe.dir/src/cliente_automatico.cpp.o CMakeFiles/cliente_automatico.exe.dir/src/usuario.cpp.o CMakeFiles/cliente_automatico.exe.dir/src/tablero.cpp.o CMakeFiles/cliente_automatico.exe.dir/src/partida.cpp.o CMakeFiles/cliente_automatico.exe.dir/src/heuristica/heuristica.cpp.o -o cliente_automatico.exe 

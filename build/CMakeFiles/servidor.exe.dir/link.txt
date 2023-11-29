@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 CMakeFiles/servidor.exe.dir/src/servidor.cpp.o CMakeFiles/servidor.exe.dir/src/usuario.cpp.o CMakeFiles/servidor.exe.dir/src/tablero.cpp.o CMakeFiles/servidor.exe.dir/src/partida.cpp.o -o servidor.exe 
