@@ -39,9 +39,9 @@ class Heuristica{
     void set_size(int new_size){
         size=new_size;
     }
-
+    void reset();
     int selec_dirji(vector<int> &v);
-    string selec_dirji();
+    string selec_dirji(vector<int> &v, int modo);
     virtual int actualizar_tocado(vector<int> coords) const = 0;
     virtual int actualizar_hundido_recursivo(vector<int> coords) const = 0;
     virtual int actualizar_agua(vector<int> coords) const = 0;
@@ -50,6 +50,7 @@ class Heuristica{
     bool comprobar_limite(int j, int i) const;
 
     string disparar(string resultado);
+    string disparar(string resultado,vector<int> coords);
 };
 
 #endif

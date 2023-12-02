@@ -67,6 +67,7 @@ all: CMakeFiles/cliente.exe.dir/all
 all: CMakeFiles/automatico_cliente.exe.dir/all
 all: CMakeFiles/estres_cliente.exe.dir/all
 all: CMakeFiles/servidor.exe.dir/all
+all: CMakeFiles/generador_usuarios_pruebas.exe.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -78,6 +79,7 @@ clean: CMakeFiles/cliente.exe.dir/clean
 clean: CMakeFiles/automatico_cliente.exe.dir/clean
 clean: CMakeFiles/estres_cliente.exe.dir/clean
 clean: CMakeFiles/servidor.exe.dir/clean
+clean: CMakeFiles/generador_usuarios_pruebas.exe.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -165,7 +167,7 @@ CMakeFiles/estres_cliente.exe.dir/clean:
 CMakeFiles/servidor.exe.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/servidor.exe.dir/build.make CMakeFiles/servidor.exe.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/servidor.exe.dir/build.make CMakeFiles/servidor.exe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/linux/Documentos/GitHub/CESI/build/CMakeFiles --progress-num=14,15,16,17,18 "Built target servidor.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/linux/Documentos/GitHub/CESI/build/CMakeFiles --progress-num=16,17,18,19,20 "Built target servidor.exe"
 .PHONY : CMakeFiles/servidor.exe.dir/all
 
 # Build rule for subdir invocation for target.
@@ -183,6 +185,32 @@ servidor.exe: CMakeFiles/servidor.exe.dir/rule
 CMakeFiles/servidor.exe.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/servidor.exe.dir/build.make CMakeFiles/servidor.exe.dir/clean
 .PHONY : CMakeFiles/servidor.exe.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/generador_usuarios_pruebas.exe.dir
+
+# All Build rule for target.
+CMakeFiles/generador_usuarios_pruebas.exe.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/linux/Documentos/GitHub/CESI/build/CMakeFiles --progress-num=14,15 "Built target generador_usuarios_pruebas.exe"
+.PHONY : CMakeFiles/generador_usuarios_pruebas.exe.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/generador_usuarios_pruebas.exe.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/linux/Documentos/GitHub/CESI/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/generador_usuarios_pruebas.exe.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/linux/Documentos/GitHub/CESI/build/CMakeFiles 0
+.PHONY : CMakeFiles/generador_usuarios_pruebas.exe.dir/rule
+
+# Convenience name for target.
+generador_usuarios_pruebas.exe: CMakeFiles/generador_usuarios_pruebas.exe.dir/rule
+.PHONY : generador_usuarios_pruebas.exe
+
+# clean rule for target.
+CMakeFiles/generador_usuarios_pruebas.exe.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/clean
+.PHONY : CMakeFiles/generador_usuarios_pruebas.exe.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

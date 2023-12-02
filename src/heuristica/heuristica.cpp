@@ -67,9 +67,8 @@ int Heuristica::selec_dirji(vector<int> &v){
         }
         return 1;
 }
-string Heuristica::selec_dirji(){
+string Heuristica::selec_dirji(vector<int> &v, int modo){
     vector<string> alfabeto({ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"});
-    vector<int> v(2);
     selec_dirji(v);
     string res= alfabeto[v[0]]+","+to_string(v[1]+1);
     return res;
@@ -116,11 +115,31 @@ string Heuristica::disparar(string resultado){
   
     string scoords_mostrar= alfabeto[coords[0]]+","+to_string(coords[1]+1);
 
-    //dispara jugador1 que siempre es el "bot"
+    //dispara jugador1 que siempre es el "bot"void reset();
     actualizar_euristica(coords,resultado);
     return scoords_mostrar;
 }
 
+string Heuristica::disparar(string resultado,vector<int> coords){
+    if(resultado!="AGUA" && resultado!="TOCADO" && resultado!="HUNDIDO"){
+        return "NADA";
+    }
+    vector<string> alfabeto({ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"});
+
+    string scoords;
+    if(coords[1]==9){
+        scoords= alfabeto[coords[0]]+to_string(0);
+    }
+    else{
+        scoords= alfabeto[coords[0]]+to_string(coords[1]+1);
+    }
+  
+    string scoords_mostrar= alfabeto[coords[0]]+","+to_string(coords[1]+1);
+
+    //dispara jugador1 que siempre es el "bot"
+    actualizar_euristica(coords,resultado);
+    return scoords_mostrar;
+}
 
 string Heuristica::mostrar_mapa_euristico(){
     string salida = "";
@@ -152,4 +171,11 @@ string Heuristica::mostrar_mapa_euristico(){
     
     return salida;
 
+}
+void Heuristica::reset(){
+    for(int i=0;i<size;i++){
+        for(int j=0;j<size;j++){
+            matriz[j][i]=0;
+        }
+    }
 }

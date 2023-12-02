@@ -14,6 +14,7 @@
 #include "heuristica/heuristicastr1.hpp"
 using namespace std;
 
+int leer_claves(vector<string> &claves);
 int main ( )
 {
   
@@ -31,8 +32,9 @@ int main ( )
     int fin = 0;
     //Este es el bicho que juega solo
     Heuristicastr1 bot;
-	
-    
+	vector<string> claves;
+    leer_claves(claves);
+    int logit=0;
 	/* --------------------------------------------------
 		Se abre el socket 
 	---------------------------------------------------*/
@@ -88,7 +90,31 @@ int main ( )
             
             printf("\n%s\n",buffer);
             bool esperamu=true;
-            if(sbuff.find("Empieza la partida.")!= string::npos){
+            if(sbuff.find("Usuario conectado")!=string::npos || sbuff.find("El usuario ya ha iniciado sesion")!=string::npos){
+                if(sbuff.find("El usuario ya ha iniciado sesion")!=string::npos){
+                    logit++;
+                }
+                sbuff = "USUARIO "+claves[logit];
+                logit++;
+                bzero(buffer,sizeof(buffer));
+                strcpy(buffer,sbuff.c_str());
+                send(sd,buffer,sizeof(buffer),0);
+            }
+            else if(sbuff.find("Usuario correcto")!=string::npos){
+                sbuff = "PASSWORD "+claves[logit];
+                logit++;
+                bzero(buffer,sizeof(buffer));
+                strcpy(buffer,sbuff.c_str());
+                send(sd,buffer,sizeof(buffer),0);
+            }
+            else if(sbuff.find("Usuario validado")!=string::npos){
+                sbuff = "INICIAR-PARTIDA\n";
+                bzero(buffer,sizeof(buffer));
+                strcpy(buffer,sbuff.c_str());
+                send(sd,buffer,sizeof(buffer),0);
+            }
+            else if(sbuff.find("Empieza la partida.")!= string::npos){
+                vector<int> coords(2);
 				do{
                     auxfds = readfds;
                     salida = select(sd+1,&auxfds,NULL,NULL,NULL);
@@ -96,31 +122,33 @@ int main ( )
                         bzero(buffer,sizeof(buffer));
                         recv(sd,buffer,sizeof(buffer),0);
                         sbuff = buffer;
+                        cout<<sbuff<<endl;
                         if((sbuff.find("Ok. AGUA")!= string::npos) || (sbuff.find("Ok. TOCADO")!= string::npos) || (sbuff.find("Ok. HUNDIDO")!= string::npos)){
                             
                             string estado = sbuff.substr(sbuff.find(' ')+1,sbuff.find(':')-sbuff.find(' ')-1);
                             //MODIFICAR DISPARAR PARA PODER INTRODUCIRLE LAS COORDENADAS, POR EL TEMA DE LOS NUMEROS ALEATORIOS
-                            cout<<estado<<" "<<bot.disparar(estado)<<endl;
+                            bot.disparar(estado,coords);
                             
                         }
                         else if(sbuff.find("Turno de partida")!= string::npos){
                             bzero(buffer,sizeof(buffer));
-                            string scoord =bot.selec_dirji();
+                            string scoord =bot.selec_dirji(coords,1);
                             sbuff = "DISPARO "+scoord;
-                            cout<<sbuff<<endl;
                             strcpy(buffer,sbuff.c_str());
                             esperamu=true;
                             send(sd,buffer,sizeof(buffer),0);
                         }
                         else if(sbuff.find("ha ganado")!=string::npos){
-                            cout<<"SALIAOASOAOSAOSAA"<<endl;
-                            fin++;
+                            sbuff = "INICIAR-PARTIDA\n";
+                            bzero(buffer,sizeof(buffer));
+                            strcpy(buffer,sbuff.c_str());
+                            bot.reset();
+                            send(sd,buffer,sizeof(buffer),0);
                         }
                     }
                     //mensaje desde servidor
                     
                 }while(fin == 0);
-                cout<<"SALE DEL BUCLE POR LA CARA"<<endl;
 			}
 			else if((sbuff.find("+Ok. AGUA")!= string::npos) || (sbuff.find("Ok. TOCADO")!= string::npos) || (sbuff.find("Ok. HUNDIDO")!= string::npos)){
 				string estado = sbuff.substr(sbuff.find(' ')+1,sbuff.find(':')-sbuff.find(' ')-1);
@@ -182,3 +210,19 @@ int main ( )
     return 0;
 		
 }
+
+int leer_claves(vector<string> &claves){
+    std::ifstream archivo("../data/usuarios_pruebas.txt");
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo: " << "../data/usuarios_pruebas.txt"<< std::endl;
+        return 1; // Salir con código de error
+    }
+    std::string linea;
+    while (std::getline(archivo, linea)) {
+        // Imprime cada línea en la consola
+        claves.push_back(linea);
+    }
+    archivo.close();
+    return 0;
+}
+    

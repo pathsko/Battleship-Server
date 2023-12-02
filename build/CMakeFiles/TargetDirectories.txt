@@ -2,5 +2,6 @@
 /home/linux/Documentos/GitHub/CESI/build/CMakeFiles/automatico_cliente.exe.dir
 /home/linux/Documentos/GitHub/CESI/build/CMakeFiles/estres_cliente.exe.dir
 /home/linux/Documentos/GitHub/CESI/build/CMakeFiles/servidor.exe.dir
+/home/linux/Documentos/GitHub/CESI/build/CMakeFiles/generador_usuarios_pruebas.exe.dir
 /home/linux/Documentos/GitHub/CESI/build/CMakeFiles/edit_cache.dir
 /home/linux/Documentos/GitHub/CESI/build/CMakeFiles/rebuild_cache.dir

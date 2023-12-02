@@ -168,6 +168,19 @@ servidor.exe/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/servidor.exe.dir/build.make CMakeFiles/servidor.exe.dir/build
 .PHONY : servidor.exe/fast
 
+#=============================================================================
+# Target rules for targets named generador_usuarios_pruebas.exe
+
+# Build rule for target.
+generador_usuarios_pruebas.exe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generador_usuarios_pruebas.exe
+.PHONY : generador_usuarios_pruebas.exe
+
+# fast build rule for target.
+generador_usuarios_pruebas.exe/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/build
+.PHONY : generador_usuarios_pruebas.exe/fast
+
 src/cliente.o: src/cliente.cpp.o
 .PHONY : src/cliente.o
 
@@ -378,6 +391,30 @@ src/usuario.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/servidor.exe.dir/build.make CMakeFiles/servidor.exe.dir/src/usuario.cpp.s
 .PHONY : src/usuario.cpp.s
 
+src/utils/generador_usuarios_prueba.o: src/utils/generador_usuarios_prueba.cpp.o
+.PHONY : src/utils/generador_usuarios_prueba.o
+
+# target to build an object file
+src/utils/generador_usuarios_prueba.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/src/utils/generador_usuarios_prueba.cpp.o
+.PHONY : src/utils/generador_usuarios_prueba.cpp.o
+
+src/utils/generador_usuarios_prueba.i: src/utils/generador_usuarios_prueba.cpp.i
+.PHONY : src/utils/generador_usuarios_prueba.i
+
+# target to preprocess a source file
+src/utils/generador_usuarios_prueba.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/src/utils/generador_usuarios_prueba.cpp.i
+.PHONY : src/utils/generador_usuarios_prueba.cpp.i
+
+src/utils/generador_usuarios_prueba.s: src/utils/generador_usuarios_prueba.cpp.s
+.PHONY : src/utils/generador_usuarios_prueba.s
+
+# target to generate assembly for a file
+src/utils/generador_usuarios_prueba.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generador_usuarios_pruebas.exe.dir/build.make CMakeFiles/generador_usuarios_pruebas.exe.dir/src/utils/generador_usuarios_prueba.cpp.s
+.PHONY : src/utils/generador_usuarios_prueba.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -389,6 +426,7 @@ help:
 	@echo "... automatico_cliente.exe"
 	@echo "... cliente.exe"
 	@echo "... estres_cliente.exe"
+	@echo "... generador_usuarios_pruebas.exe"
 	@echo "... servidor.exe"
 	@echo "... src/cliente.o"
 	@echo "... src/cliente.i"
@@ -414,6 +452,9 @@ help:
 	@echo "... src/usuario.o"
 	@echo "... src/usuario.i"
 	@echo "... src/usuario.s"
+	@echo "... src/utils/generador_usuarios_prueba.o"
+	@echo "... src/utils/generador_usuarios_prueba.i"
+	@echo "... src/utils/generador_usuarios_prueba.s"
 .PHONY : help
 
 

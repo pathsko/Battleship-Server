@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "../data/basededatos.txt"
+  "../src/utils/script_generador.sh"
   "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
@@ -40,6 +41,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "basededatos.txt"
+  "script_generador.sh"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -49,4 +51,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/automatico_cliente.exe.dir/DependInfo.cmake"
   "CMakeFiles/estres_cliente.exe.dir/DependInfo.cmake"
   "CMakeFiles/servidor.exe.dir/DependInfo.cmake"
+  "CMakeFiles/generador_usuarios_pruebas.exe.dir/DependInfo.cmake"
   )
