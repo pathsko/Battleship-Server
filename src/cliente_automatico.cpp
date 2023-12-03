@@ -212,9 +212,9 @@ int main ( )
 }
 
 int leer_claves(vector<string> &claves){
-    std::ifstream archivo("../data/usuarios_pruebas.txt");
+    std::ifstream archivo("usuarios_pruebas.txt");
     if (!archivo.is_open()) {
-        std::cerr << "Error al abrir el archivo: " << "../data/usuarios_pruebas.txt"<< std::endl;
+        std::cerr << "Error al abrir el archivo: " << "usuarios_pruebas.txt"<< std::endl;
         return 1; // Salir con código de error
     }
     std::string linea;
@@ -225,4 +225,3 @@ int leer_claves(vector<string> &claves){
     archivo.close();
     return 0;
 }
-    

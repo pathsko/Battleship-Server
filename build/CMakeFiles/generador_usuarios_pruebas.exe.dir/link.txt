@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++11 CMakeFiles/generador_usuarios_pruebas.exe.dir/src/utils/generador_usuarios_prueba.cpp.o -o generador_usuarios_pruebas.exe 
