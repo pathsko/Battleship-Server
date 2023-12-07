@@ -117,6 +117,7 @@ int main ( )
 										perror("Error en la operación de send");
 										exit(1);
 									}
+									cout<<"Numero de clientes conectados: "<<clientes.size()<<endl;
 	
                                     
                                 
@@ -145,7 +146,7 @@ int main ( )
                              
                                 for (j = 0; j < clientes.size(); j++){
 									bzero(buffer, sizeof(buffer));
-									strcpy(buffer,"Desconexión servidor"); 
+									strcpy(buffer,"Desconexion servidor"); 
                                     send(clientes[j],buffer , sizeof(buffer),0);
                                     close(clientes[j]);
                                     FD_CLR(clientes[j],&readfds);
@@ -157,7 +158,6 @@ int main ( )
                                 
                             }
 							
-                            //Mensajes que se quieran mandar a los clientes (implementar)
                             
                         } 
                         else{

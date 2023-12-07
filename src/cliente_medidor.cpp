@@ -9,10 +9,13 @@
 #include <time.h>
 #include <arpa/inet.h>
 #include <iostream>
+#include <string>
+#include <fstream>
 
 #include "utils/ClaseTiempo.hpp"
 using namespace std;
 
+string leer_ip();
 int main ( )
 {
   
@@ -26,6 +29,7 @@ int main ( )
     fd_set readfds, auxfds;
     int salida;
     int fin = 0;
+    double suma = 0, iteraciones = 0;
     Clock reloj;
 	/* --------------------------------------------------
 		Se abre el socket 
@@ -43,9 +47,10 @@ int main ( )
 		Se rellenan los campos de la estructura con la IP del 
 		servidor y el puerto del servicio que solicitamos
 	-------------------------------------------------------------------*/
+	string ip= leer_ip();
 	sockname.sin_family = AF_INET;
 	sockname.sin_port = htons(2065);
-	sockname.sin_addr.s_addr =  inet_addr("127.0.0.1");
+	sockname.sin_addr.s_addr =  inet_addr(ip.c_str());
 
 	/* ------------------------------------------------------------------
 		Se solicita la conexión con el servidor
@@ -69,6 +74,7 @@ int main ( )
 		Se transmite la información
 	-------------------------------------------------------------------*/
 	bool mostrar=true;
+    string sbuff;
 	do
 	{
         auxfds = readfds;
@@ -76,9 +82,15 @@ int main ( )
         
         //Tengo mensaje desde el servidor
         if(FD_ISSET(sd, &auxfds)){
+            
+            if(sbuff.find("Desconexion servidor")!=string::npos){
+                fin=1;
+            }
             reloj.stop();
 			if(mostrar){
 				cout<<"Respuesta en :"<<reloj.elapsed()/1000.0<<" ms"<<endl;
+				iteraciones++;
+				suma+=reloj.elapsed()/1000.0;
 			}
             
             bzero(buffer,sizeof(buffer));
@@ -110,6 +122,10 @@ int main ( )
                 }
                 else if(strcmp(buffer,"STOP\n") == 0){
                     mostrar= !mostrar;
+                    cout<<"Media del tiempo de respuesta = " << suma/iteraciones << " ms" << endl;
+                    suma = 0.0;
+                    iteraciones = 0;
+                     
                 
                 }
                 
@@ -128,4 +144,15 @@ int main ( )
 
     return 0;
 		
+}
+
+string leer_ip(){
+    std::ifstream archivo("IP.txt");
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo: " << "usuarios_pruebas.txt"<< std::endl;
+        return ""; // Salir con código de error
+    }
+    std::string linea;
+    std::getline(archivo, linea);
+    return linea;
 }

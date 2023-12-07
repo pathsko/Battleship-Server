@@ -3,14 +3,14 @@
 #include <string>
 using namespace std;
 int main(int argc, char ** argv){
-    srand(time(NULL));
+    int seed = 1000000;
     int nusuarios= atoi(argv[1]);
     vector<long int> datos;
     for(int i=0;i<nusuarios;i++){
         //usuario
-        datos.push_back(rand()%100000000);
+        datos.push_back(seed+i);
         //contrasenia
-        datos.push_back(rand()%100000000);
+        datos.push_back(seed+i);
     }
     for(int i=0;i<datos.size();i++){
         cout<<datos[i]<<endl;

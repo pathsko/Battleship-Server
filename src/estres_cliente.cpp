@@ -9,9 +9,11 @@
 #include <time.h>
 #include <arpa/inet.h>
 #include <iostream>
+#include <string>
+#include <fstream>
 
 using namespace std;
-
+string leer_ip();
 int main ( )
 {
   
@@ -43,9 +45,10 @@ int main ( )
 		Se rellenan los campos de la estructura con la IP del 
 		servidor y el puerto del servicio que solicitamos
 	-------------------------------------------------------------------*/
+	string ip= leer_ip();
 	sockname.sin_family = AF_INET;
 	sockname.sin_port = htons(2065);
-	sockname.sin_addr.s_addr =  inet_addr("127.0.0.1");
+	sockname.sin_addr.s_addr =  inet_addr(ip.c_str());
 
 	/* ------------------------------------------------------------------
 		Se solicita la conexión con el servidor
@@ -81,6 +84,9 @@ int main ( )
 			string sbuff = buffer;
             
             printf("\n%s\n",buffer);
+			if(sbuff.find("Desconexion servidor")!=string::npos){
+                fin=1;
+            }
                 
 
             
@@ -99,4 +105,14 @@ int main ( )
 
     return 0;
 		
+}
+string leer_ip(){
+    std::ifstream archivo("IP.txt");
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo: " << "usuarios_pruebas.txt"<< std::endl;
+        return ""; // Salir con código de error
+    }
+    std::string linea;
+    std::getline(archivo, linea);
+    return linea;
 }

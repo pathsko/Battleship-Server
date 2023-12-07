@@ -3,8 +3,9 @@ Requisitos: El proyecto utiliza gestión de puertos del ordenador por lo que se 
 
 Instrucciones para montar y compilar el proyecto:
 Estando en la carpeta raíz, es decir, en la carpeta que contiene el archivo "CMakeLists.txt", ejecutar el siguiente comando:
-cmake -B build && cd build && make && chmod u+x script_generador.sh && ./script_generador.sh
+cmake -B build && cd build && make && chmod u+x *.sh && echo X.X.X.X > IP.txt && ./script_generador.sh
 
+En la carpeta build se encontrará un fichero "IP.txt" en él se deberá indicar la ip del servidor en el que se están realizando las pruebas
 Descripción de ejecutables:
 
 servidor.exe : El programa que ejecuta el servidor, para realizar pruebas se recomienda iniciarlo en una terminal y
@@ -29,3 +30,11 @@ medidor_tiempo_respuesta.exe :  Un programa que reliza continuamente peticiones 
  IMPORTANTE: Este programa tiene dos modos, uno muestra el tiempo y el otro no, para alternar entre ellos introducir por línea de comandos "STOP",
  podemos decir que es como un cronómetro virtual.
  NOTAS: Dado que el programa muestra datos sin parar al escribir el comando "STOP" no veremos lo que escribimos.
+
+script_genera_clientes_auto.sh : Script en bash que genera un número de clientes automáticos introducidos por línea de comandos 
+(./script_genera_clientes_auto.sh nºClientes)
+
+script_genera_clientes_estres.sh :  Script en bash que genera un número de clientes estresantes introducidos por línea de comandos 
+(./script_genera_clientes_estres.sh nºClientes)
+
+NOTA: Al introducir "SALIR" en el servidor todas las terminales de clientes creadas con los scripts se cerrarán automáticamente

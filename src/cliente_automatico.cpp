@@ -9,11 +9,13 @@
 #include <time.h>
 #include <arpa/inet.h>
 #include <iostream>
+#include <string>
 
 #include "tablero.hpp"
 #include "heuristica/heuristicastr1.hpp"
 using namespace std;
 
+string leer_ip();
 int leer_claves(vector<string> &claves);
 int main ( )
 {
@@ -51,9 +53,10 @@ int main ( )
 		Se rellenan los campos de la estructura con la IP del 
 		servidor y el puerto del servicio que solicitamos
 	-------------------------------------------------------------------*/
+    string ip= leer_ip();
 	sockname.sin_family = AF_INET;
 	sockname.sin_port = htons(2065);
-	sockname.sin_addr.s_addr =  inet_addr("127.0.0.1");
+	sockname.sin_addr.s_addr =  inet_addr(ip.c_str());
 
 	/* ------------------------------------------------------------------
 		Se solicita la conexión con el servidor
@@ -145,10 +148,14 @@ int main ( )
                             bot.reset();
                             send(sd,buffer,sizeof(buffer),0);
                         }
+                        else if(sbuff.find("Desconexion servidor")!=string::npos){
+                        	fin=1;
+                        }
                     }
                     //mensaje desde servidor
                     
                 }while(fin == 0);
+            
 			}
 			else if((sbuff.find("+Ok. AGUA")!= string::npos) || (sbuff.find("Ok. TOCADO")!= string::npos) || (sbuff.find("Ok. HUNDIDO")!= string::npos)){
 				string estado = sbuff.substr(sbuff.find(' ')+1,sbuff.find(':')-sbuff.find(' ')-1);
@@ -171,10 +178,10 @@ int main ( )
             else if(strcmp(buffer,"Demasiados clientes conectados") == 0)
                 fin =1;
             
-            else if(strcmp(buffer,"Desconexión servidor") == 0){
-				fin =1;
-				
-			}
+            
+            else if(sbuff.find("Desconexion servidor")!=string::npos){
+                fin=1;
+            }
                 
 
             
@@ -224,4 +231,14 @@ int leer_claves(vector<string> &claves){
     }
     archivo.close();
     return 0;
+}
+string leer_ip(){
+    std::ifstream archivo("IP.txt");
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo: " << "usuarios_pruebas.txt"<< std::endl;
+        return ""; // Salir con código de error
+    }
+    std::string linea;
+    std::getline(archivo, linea);
+    return linea;
 }
